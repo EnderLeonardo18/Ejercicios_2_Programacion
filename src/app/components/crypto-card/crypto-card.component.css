@@ -1,0 +1,53 @@
+/* src/app/components/crypto-card/crypto-card.component.css */
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #334155;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+/* Requerimiento: Cambio de estilo visual si supera el umbral  */
+.card.alert-mode {
+  border: 2px solid var(--alert-border);
+  background: linear-gradient(145deg, #1e293b 0%, #2d1d05 100%);
+}
+
+h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--accent-blue);
+  font-size: 1.25rem;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+
+small {
+  color: #94a3b8;
+  display: block;
+  margin-top: 1rem;
+}
+
+/* Requerimiento: Animaciones flash para la directiva  */
+.flash-green {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: var(--up-color);
+}
+
+.flash-red {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: var(--down-color);
+}

@@ -1,0 +1,9 @@
+<div class="dashboard">
+  <input type="number" (input)="updateThreshold($event)" [value]="threshold()" placeholder="Umbral de Alerta">
+
+  <div class="grid">
+    @for (crypto of filteredList(); track crypto.id) {
+      <app-crypto-card [data]="crypto" [threshold]="threshold()"></app-crypto-card>
+    }
+  </div>
+</div>
