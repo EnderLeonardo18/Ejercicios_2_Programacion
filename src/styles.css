@@ -22,7 +22,7 @@ body {
   padding: 2rem;
 }
 
-/* Estilo para el input del umbral de alerta [cite: 5] */
+/* Estilo para el input del umbral de alerta*/
 input[type="number"] {
   background: var(--card-bg);
   border: 1px solid #334155;
@@ -39,6 +39,8 @@ input:focus {
   outline: 2px solid var(--accent-blue);
   border-color: transparent;
 }
+
+
 
 .grid {
   display: grid;

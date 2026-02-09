@@ -1,12 +1,58 @@
 /* src/app/components/crypto-card/crypto-card.component.css */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 1. Aseguramos que el contenedor de la moneda no crezca */
+.coin-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  height: 60px; /* Altura fija para que todas las cabeceras sean iguales */
+}
+
+/* 2. Definimos un tamaño fijo para que todas las tarjetas midan lo mismo */
+.crypto-logo {
+  width: 50px;  /* Tamaño base uniforme */
+  height: 50px;
+  object-fit: contain;
+  transition: transform 0.3s ease; /* Para que se vea fluido */
+}
+
+/* 3. Agrandamos visualmente Bitcoin sin alterar el layout */
+.crypto-logo.logo-featured {
+transform: scale(1.4); /* Lo hace un 40% más grande que los demás */
+  transform-origin: center; /* Crece desde el centro */
+  filter: drop-shadow(0 0 5px rgba(247, 147, 26, 0.3)); /* Opcional: brillo sutil */
+
+}
+
+
+/* Estilos específicos para el logo de Cardano */
+.crypto-logo.logo-ada {
+  background-color: #ffffff;    /* Fondo blanco para que resalte el logo */
+  border: 2px solid #0033ad;    /* Borde azul (color corporativo de Cardano) */
+  border-radius: 50%;           /* Hace la imagen y el borde completamente redondos */
+  padding: 4px;                 /* Espacio entre el logo y el borde */
+  box-sizing: border-box;       /* Asegura que el padding no agrande la imagen */
+  object-fit: contain;          /* Evita que el logo se deforme dentro del círculo */
+}
+
+h3 {
+  margin: 0; /* Quitamos el margen para que se alinee perfectamente con la imagen */
+  color: var(--accent-blue);
+  font-size: 1.25rem;
+}
+
+/* El resto del CSS se mantiene igual */
 .card {
   background: var(--card-bg);
   border-radius: 12px;
   padding: 1.5rem;
   border: 1px solid #334155;
   transition: transform 0.2s, box-shadow 0.2s;
-  position: relative;
-  overflow: hidden;
 }
 
 .card:hover {
