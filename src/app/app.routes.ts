@@ -1,3 +1,7 @@
 import { Routes } from '@angular/router';
+import { CryptoDashboardComponent } from './components/crypto-dashboard/crypto-dashboard.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', component: CryptoDashboardComponent }, // Ruta por defecto
+  { path: '**', redirectTo: '' } // Redirigir cualquier error a la principal
+];
