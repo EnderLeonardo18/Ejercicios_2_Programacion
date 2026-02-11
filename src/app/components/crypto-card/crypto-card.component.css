@@ -41,9 +41,11 @@ transform: scale(1.4); /* Lo hace un 40% más grande que los demás */
 }
 
 h3 {
-  margin: 0; /* Quitamos el margen para que se alinee perfectamente con la imagen */
+  margin: 0;
   color: var(--accent-blue);
   font-size: 1.25rem;
+  display: flex;
+  align-items: center; /* Asegura alineación perfecta con el logo */
 }
 
 /* El resto del CSS se mantiene igual */
@@ -66,11 +68,6 @@ h3 {
   background: linear-gradient(145deg, #1e293b 0%, #2d1d05 100%);
 }
 
-h3 {
-  margin: 0 0 0.5rem 0;
-  color: var(--accent-blue);
-  font-size: 1.25rem;
-}
 
 .price {
   font-size: 2rem;
