@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
-import { CryptoDashboardComponent } from './components/crypto-dashboard/crypto-dashboard.component';
+import { IndexComponent } from './index/index.component'; // Tu landing page
+import { CryptoDashboardComponent } from './components/crypto-dashboard/crypto-dashboard.component'; // Tu dashboard
 
 export const routes: Routes = [
-  { path: '', component: CryptoDashboardComponent }, // Ruta por defecto
-  { path: '**', redirectTo: '' } // Redirigir cualquier error a la principal
+  { path: '', component: IndexComponent }, // Landing page
+  { path: 'dashboard', component: CryptoDashboardComponent }, // Tu dashboard
+  { path: '**', redirectTo: '' } // Redirigir cualquier error al landing
 ];

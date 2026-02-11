@@ -32,6 +32,8 @@ export class CryptoDashboardComponent {
 
   constructor() {
 
+    
+
     // Escuchar resultados del worker
     this.worker.onmessage = ({ data }) => {
       if(data){
@@ -65,5 +67,10 @@ export class CryptoDashboardComponent {
   updateThreshold(event: Event) {
     const input = event.target as HTMLInputElement;
     this.threshold.set(+input.value);
+  }
+
+  // ✅ NUEVO MÉTODO PARA VOLVER AL INICIO - SOLO ESTO SE AÑADIÓ
+  goToIndex() {
+    window.location.href = '/';
   }
 }
