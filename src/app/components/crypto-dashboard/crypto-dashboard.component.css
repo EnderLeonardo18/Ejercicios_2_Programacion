@@ -1,3 +1,59 @@
+/* Asegura que el wrapper sea el punto de referencia real */
+.dashboard-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0f172a; /* Tu color oscuro */
+  overflow: hidden; /* Vital para que los orbes no creen scroll */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔵 ORBES: Ajustados para máxima visibilidad */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px); /* Aumentamos el desenfoque para suavizar */
+  z-index: 1; /* Por encima del fondo del wrapper */
+  pointer-events: none;
+  opacity: 0.6; /* Subimos opacidad para que se vean sí o sí */
+}
+
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #8B5CF6, transparent);
+  top: -10%;
+  left: -10%;
+  animation: float 20s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #EC4899, transparent);
+  bottom: -10%;
+  right: -10%;
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  background: #059669; /* Verde */
+  opacity: 0.15;
+  top: 30%;
+  left: 20%;
+  animation: float 18s linear infinite;
+}
+
+/* Asegura que el contenido esté por encima de los orbes */
+.dashboard, .boton-regreso-crypto {
+  position: relative;
+  z-index: 10;
+}
+
+
 
 /* ===== FILTRO ===== */
 input[type="number"] {
@@ -28,3 +84,74 @@ input[type="number"]:focus {
     0 15px 40px rgba(0, 0, 0, 0.45);
 }
 
+
+
+
+
+/* 6. TUS ESTILOS EXISTENTES (DASHBOARD Y GRID) */
+/* 🟢 CONTENIDO: Debe estar por encima de los orbes */
+.dashboard, .boton-regreso-crypto {
+  position: relative;
+  z-index: 10; /* Mucho más alto que los orbes */
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Estilo del Input de Umbral */
+input[type="number"] {
+  display: block;
+  margin: 0 auto 2.5rem auto;
+  padding: 0.9rem 1.2rem;
+  width: 280px;
+  background: rgba(30, 41, 59, 0.7); /* Más transparente para que se vea el fondo */
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 14px;
+  backdrop-filter: blur(5px);
+  text-align: center;
+  outline: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Busca la clase .boton-regreso-crypto y actualízala así: */
+.boton-regreso-crypto {
+  position: fixed;       /* 👈 Clave: Se desprende del flujo y flota */
+  bottom: 30px;          /* 👈 Lo separa del borde inferior */
+  left: 30px;            /* 👈 Lo separa del borde izquierdo */
+  z-index: 100;          /* 👈 Asegura que esté por encima de las cards y orbes */
+
+  /* Mantén tus estilos de diseño (colores, padding, etc.) */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 12px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.boton-regreso-crypto:hover {
+  transform: translateY(-5px) scale(1.05); /* Efecto de levitación al pasar el mouse */
+  background: rgba(30, 41, 59, 0.9);
+}
+
+
+
+/* 5. ANIMACIONES */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(50px, 80px) rotate(10deg); }
+  66% { transform: translate(-30px, 40px) rotate(-10deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.4; }
+}

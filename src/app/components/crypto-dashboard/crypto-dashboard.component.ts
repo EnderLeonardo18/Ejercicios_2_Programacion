@@ -1,18 +1,25 @@
 import { Component, ChangeDetectionStrategy, inject, signal, computed, effect } from '@angular/core';
 import { CryptoDataService } from '../../core/services/crypto-data.service';
 import { CryptoCardComponent } from '../crypto-card/crypto-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crypto-dashboard',
   standalone: true,
   imports: [CryptoCardComponent],
   templateUrl: './crypto-dashboard.component.html',
+  styleUrl: './crypto-dashboard.component.css',
   // Requerimiento: Uso obligatorio de Change Detection Strategy OnPush
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'style': 'display: block; flex: 1; width: 100%;'
+  }
 })
 export class CryptoDashboardComponent {
 
   private dataService = inject(CryptoDataService);
+  private router = inject(Router);
+
 
   // Umbral de alerta
   threshold = signal(65000);
@@ -32,7 +39,7 @@ export class CryptoDashboardComponent {
 
   constructor() {
 
-    
+
 
     // Escuchar resultados del worker
     this.worker.onmessage = ({ data }) => {
@@ -71,6 +78,6 @@ export class CryptoDashboardComponent {
 
   // ✅ NUEVO MÉTODO PARA VOLVER AL INICIO - SOLO ESTO SE AÑADIÓ
   goToIndex() {
-    window.location.href = '/';
+    this.router.navigate(['/']);
   }
 }

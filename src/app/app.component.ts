@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router'; // Añade esto
 import { CryptoDashboardComponent } from './components/crypto-dashboard/crypto-dashboard.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true, // Asegúrate de que sea standalone
-  imports: [RouterOutlet], // Añadimos los componentes necesarios
+  imports: [RouterOutlet, FooterComponent], // Añadimos los componentes necesarios
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

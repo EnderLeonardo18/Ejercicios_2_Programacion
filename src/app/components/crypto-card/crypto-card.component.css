@@ -66,6 +66,7 @@ h3 {
 .card.alert-mode {
   border: 2px solid var(--alert-border);
   background: linear-gradient(145deg, #1e293b 0%, #2d1d05 100%);
+  animation: pulse-alert 2s infinite;
 }
 
 
@@ -93,4 +94,12 @@ small {
 .flash-red {
   background-color: rgba(239, 68, 68, 0.2);
   color: var(--down-color);
+}
+
+
+
+@keyframes pulse-alert {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
 }

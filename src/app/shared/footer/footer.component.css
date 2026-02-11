@@ -1,0 +1,22 @@
+/* footer.component.css */
+.landing-footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  /* background: rgba(15, 23, 42, 0.8); Un tono más oscuro que el fondo principal */
+  background: rgba(0, 14, 43, 0.8); /* Un tono más oscuro que el fondo principal */
+  border-top: 1px solid rgba(19, 34, 88, 0.05);
+  backdrop-filter: blur(10px); /* Efecto moderno de desenfoque */
+}
+
+.landing-footer p {
+  color: var(--text-main);
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.footer-note {
+  font-size: 0.85rem;
+  color: var(--accent-blue); /* Usamos la variable global para coherencia */
+  opacity: 0.6;
+}

@@ -9,6 +9,30 @@
   --alert-border: #f59e0b;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ESTRUCTURA GLOBAL: Esto es lo único que debe haber del layout aquí */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Empuja el contenido para que el footer baje */
+router-outlet + * {
+  flex: 1;
+}
+
+app-footer {
+  margin-top: auto; /* Esto garantiza que el footer siempre esté abajo */
+}
+
 body {
   background-color: var(--bg-dark);
   color: var(--text-main);
@@ -48,7 +72,7 @@ input:focus {
   gap: 1.5rem;
 }
 
-/* ===== BOTÓN VOLVER AL INICIO - VERSIÓN PREMIUM ===== */
+/* ===== BOTÓN VOLVER AL INICIO */
 .boton-regreso-crypto {
   position: fixed;
   bottom: 35px;
@@ -148,7 +172,7 @@ input:focus {
     left: 25px;
     padding: 14px 26px;
   }
-  
+
   .texto-inferior-regreso {
     display: none;
   }
