@@ -1,10 +1,6 @@
 # CryptoMonitor
 
-<<<<<<< HEAD
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
-=======
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
->>>>>>> 94d00f1dd38fb08568545fe2d149adce6ce6167a
 
 ## Development server
 

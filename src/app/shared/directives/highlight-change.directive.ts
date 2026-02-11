@@ -13,15 +13,11 @@ export class HighlightChangeDirective implements OnChanges {
     const prev = changes['currentPrice'].previousValue;
     const curr = changes['currentPrice'].currentValue;
 
-    if (prev !== undefined) {
+    if (prev !== undefined && prev !== curr) {
       const className = curr > prev ? 'flash-green' : 'flash-red';
       this.renderer.addClass(this.el.nativeElement, className);
-<<<<<<< HEAD
-      setTimeout(() => this.renderer.removeClass(this.el.nativeElement, className), 150);
-=======
       // setTimeout(() => this.renderer.removeClass(this.el.nativeElement, className), 150);
       setTimeout(() => this.renderer.removeClass(this.el.nativeElement, className), 3000);
->>>>>>> 94d00f1dd38fb08568545fe2d149adce6ce6167a
     }
   }
 }

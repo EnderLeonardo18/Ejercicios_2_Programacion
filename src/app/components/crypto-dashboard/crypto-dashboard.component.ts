@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-import {
-  Component,
-  ChangeDetectionStrategy,
-  inject,
-  signal,
-  computed,
-  effect
-} from '@angular/core';
-
-=======
-import { Component, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
->>>>>>> 94d00f1dd38fb08568545fe2d149adce6ce6167a
+import { Component, ChangeDetectionStrategy, inject, signal, computed, effect } from '@angular/core';
 import { CryptoDataService } from '../../core/services/crypto-data.service';
 import { CryptoCardComponent } from '../crypto-card/crypto-card.component';
 
@@ -19,7 +7,7 @@ import { CryptoCardComponent } from '../crypto-card/crypto-card.component';
   standalone: true,
   imports: [CryptoCardComponent],
   templateUrl: './crypto-dashboard.component.html',
-<<<<<<< HEAD
+  // Requerimiento: Uso obligatorio de Change Detection Strategy OnPush
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CryptoDashboardComponent {
@@ -34,8 +22,8 @@ export class CryptoDashboardComponent {
     new URL('../../app.worker', import.meta.url)
   );
 
-  // Resultado del worker
- readonly stats = signal<{ mean: number; volatility: number } | undefined>(undefined);
+  // Es Record para guardar stats de múltiples monedas
+ readonly stats = signal<Record<string, { mean: number; volatility: number }>>({});
 
   // Lista de cryptos
   readonly cryptos = computed(() =>
@@ -46,19 +34,31 @@ export class CryptoDashboardComponent {
 
     // Escuchar resultados del worker
     this.worker.onmessage = ({ data }) => {
-      this.stats.set(data);
+      if(data){
+        this.stats.update(currentStats => ({
+          ...currentStats,
+          [data.id]: data
+        }));
+
+      }
     };
 
-    // Mandar historial de BTC al worker
+    // Mandar el historial de TODAS las cryptos al worker
     effect(() => {
-      const history = this.dataService.priceHistory()['btc'];
+      const historyRecord = this.dataService.priceHistory();
+      const currentCryptos = this.cryptos();
 
-      if (history && history.length >= 10) {
-        this.worker.postMessage({
-          prices: history,
-          windowSize: 10
+      currentCryptos.forEach(crypto => {
+        const history = historyRecord[crypto.id];
+        if (history && history.length >= 10) {
+         this.worker.postMessage({
+           id: crypto.id, // Enviamos el ID
+           prices: history,
+           windowSize: 10
         });
       }
+      } )
+
     });
   }
 
@@ -67,28 +67,3 @@ export class CryptoDashboardComponent {
     this.threshold.set(+input.value);
   }
 }
-
-
-
-=======
-  // Requerimiento: Uso obligatorio de Change Detection Strategy OnPush
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class CryptoDashboardComponent {
-  private dataService = inject(CryptoDataService);
-
-  // Requerimiento: WritableSignal para el estado del umbral de alerta
-  threshold = signal(65000);
-
-  // Requerimiento: computed para filtrar la lista basándose en el estado base
-  filteredList = computed(() => {
-    // Aquí podrías agregar lógica de filtrado adicional si se requiere
-    return this.dataService.rawPrices();
-  });
-
-  updateThreshold(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.threshold.set(Number(input.value));
-  }
-}
->>>>>>> 94d00f1dd38fb08568545fe2d149adce6ce6167a

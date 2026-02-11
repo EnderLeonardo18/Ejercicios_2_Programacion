@@ -22,21 +22,13 @@ body {
   padding: 2rem;
 }
 
-<<<<<<< HEAD
-/* Estilo para el input del umbral de alerta [cite: 5] */
-=======
 /* Estilo para el input del umbral de alerta*/
->>>>>>> 94d00f1dd38fb08568545fe2d149adce6ce6167a
 input[type="number"] {
   background: var(--card-bg);
   border: 1px solid #334155;
   color: white;
   padding: 0.75rem 1rem;
   border-radius: 8px;
-<<<<<<< HEAD
-  margin-top: 20px; /* Añade esta línea para moverlo hacia abajo */
-=======
->>>>>>> 94d00f1dd38fb08568545fe2d149adce6ce6167a
   margin-bottom: 2rem;
   width: 100%;
   max-width: 300px;
@@ -48,17 +40,10 @@ input:focus {
   border-color: transparent;
 }
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 94d00f1dd38fb08568545fe2d149adce6ce6167a
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 94d00f1dd38fb08568545fe2d149adce6ce6167a
