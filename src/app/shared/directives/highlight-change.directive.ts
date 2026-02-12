@@ -13,10 +13,12 @@ export class HighlightChangeDirective implements OnChanges {
     const prev = changes['currentPrice'].previousValue;
     const curr = changes['currentPrice'].currentValue;
 
+    // Si el precio actual es distinto al anterior, disparamos una animación
     if (prev !== undefined && prev !== curr) {
       const className = curr > prev ? 'flash-green' : 'flash-red';
       this.renderer.addClass(this.el.nativeElement, className);
-      // setTimeout(() => this.renderer.removeClass(this.el.nativeElement, className), 150);
+
+      // Quitamos la clase después de 3 segundos para que esté listo para el siguiente brillo
       setTimeout(() => this.renderer.removeClass(this.el.nativeElement, className), 3000);
     }
   }

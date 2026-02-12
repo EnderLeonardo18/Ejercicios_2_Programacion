@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   imports: [CryptoCardComponent],
   templateUrl: './crypto-dashboard.component.html',
   styleUrl: './crypto-dashboard.component.css',
-  // Requerimiento: Uso obligatorio de Change Detection Strategy OnPush
+  // OnPush: Mejora el rendimiento. Angular solo revisa este componente
+  // si un Signal cambia o llega un @Input nuevo.
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'style': 'display: block; flex: 1; width: 100%;'
@@ -21,10 +22,11 @@ export class CryptoDashboardComponent {
   private router = inject(Router);
 
 
-  // Umbral de alerta
-  threshold = signal(65000);
+  // Signals para el estado local
+  threshold = signal(65000); // El umbral de alerta que el usuario escribe
 
-  // Web Worker
+  // Inicializamos el Web Worker para que los cálculos matemáticos (volatilidad)
+  // no congelen la interfaz mientras hay animaciones.
   private worker = new Worker(
     new URL('../../app.worker', import.meta.url)
   );
@@ -32,27 +34,25 @@ export class CryptoDashboardComponent {
   // Es Record para guardar stats de múltiples monedas
  readonly stats = signal<Record<string, { mean: number; volatility: number }>>({});
 
-  // Lista de cryptos
+  // Computed: Este Signal se actualiza automáticamente cada vez que el servicio cambia sus precios.
   readonly cryptos = computed(() =>
     this.dataService.rawPrices()
   );
 
   constructor() {
-
-
-
-    // Escuchar resultados del worker
+    // Escuchamos cuando el Worker termina de calcular
     this.worker.onmessage = ({ data }) => {
       if(data){
         this.stats.update(currentStats => ({
           ...currentStats,
-          [data.id]: data
+          [data.id]: data // Guardamos los resultados (volatilidad, media) vinculados al ID de la cripto
         }));
 
       }
     };
 
-    // Mandar el historial de TODAS las cryptos al worker
+    // Effect: Un "vigilante". Cada vez que el historial de precios cambia,
+    // le manda los datos al Worker para que trabaje en segundo plano.
     effect(() => {
       const historyRecord = this.dataService.priceHistory();
       const currentCryptos = this.cryptos();
@@ -76,7 +76,7 @@ export class CryptoDashboardComponent {
     this.threshold.set(+input.value);
   }
 
-  // ✅ NUEVO MÉTODO PARA VOLVER AL INICIO - SOLO ESTO SE AÑADIÓ
+  // MÉTODO PARA VOLVER AL INICIO
   goToIndex() {
     this.router.navigate(['/']);
   }

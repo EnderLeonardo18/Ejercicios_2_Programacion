@@ -16,7 +16,7 @@
   font-weight: 500;
 }
 
-/* ✅ NUEVO: Sección de desarrolladores */
+/* Sección de desarrolladores */
 .developer-section {
   margin: 2.2rem 0 2rem 0; /* Más espacio */
 }
@@ -75,19 +75,19 @@
   .landing-footer {
     padding: 2rem 1rem;
   }
-  
+
   .name {
     font-size: 1.4rem; /* Más grande también en móvil */
   }
-  
+
   .developer-names {
     gap: 0.8rem;
   }
-  
+
   .separator {
     font-size: 1.3rem;
   }
-  
+
   .university {
     font-size: 1rem;
     padding: 0 1rem;

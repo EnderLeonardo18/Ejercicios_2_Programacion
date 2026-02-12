@@ -12,8 +12,10 @@ export interface PriceData {
 }
 
 @Injectable({ providedIn: 'root' })
+
+// Este es el Corazón de los Datos
 export class CryptoDataService {
-  // Requerimiento: WritableSignal para estado base
+  // WritableSignal: Almacena el estado actual de las criptos. Al ser un Signal,
   readonly rawPrices = signal<PriceData[]>([
     { id: 'btc', name: 'Bitcoin', price: 60000, changePercent: 0, image: 'imgCripto/Bitcoin-Logo.png' },
     { id: 'eth', name: 'Ethereum', price: 3000, changePercent: 0, image: 'imgCripto/Ethereum-Logo.png' },
@@ -23,17 +25,18 @@ export class CryptoDataService {
   ]);
 
   // Historial de precios por crypto (para volatilidad)
+  // para que el Web Worker pueda calcular la volatilidad después.
   readonly priceHistory = signal<Record<string, number[]>>({});
 
   constructor() {
-    // Actualización cada 200ms
+    // Simulamos un WebSocket con un intervalo de 200ms (5 actualizaciones por segundo)
     interval(200).subscribe(() => {
       this.rawPrices.update(prices =>
         prices.map(p => {
-          const variation = (Math.random() - 0.5) * 10;
+          const variation = (Math.random() - 0.5) * 10; // Generamos fluctuación aleatoria
           const newPrice = +(p.price + variation).toFixed(2);
 
-          // Guardar historial (últimos 20 valores)
+          // Actualizamos el historial agregando el nuevo precio y manteniendo solo los últimos 20
           this.priceHistory.update(history => ({
             ...history,
             [p.id]: [...(history[p.id] ?? []), newPrice].slice(-20)
