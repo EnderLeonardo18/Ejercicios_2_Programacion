@@ -2,21 +2,94 @@
 .landing-footer {
   text-align: center;
   padding: 3rem 2rem;
-  /* background: rgba(15, 23, 42, 0.8); Un tono más oscuro que el fondo principal */
-  background: rgba(0, 14, 43, 0.8); /* Un tono más oscuro que el fondo principal */
-  border-top: 1px solid rgba(19, 34, 88, 0.05);
-  backdrop-filter: blur(10px); /* Efecto moderno de desenfoque */
+  background: rgba(0, 14, 43, 0.85);
+  border-top: 1px solid rgba(79, 114, 202, 0.15);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
 }
 
 .landing-footer p {
-  color: var(--text-main);
-  opacity: 0.8;
+  color: #e2e8f0;
+  opacity: 0.9;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
+/* ✅ NUEVO: Sección de desarrolladores */
+.developer-section {
+  margin: 2.2rem 0 2rem 0; /* Más espacio */
+}
+
+.developer-names {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem; /* Más separación */
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.name {
+  font-size: 1.8rem; /* 🚀 MUCHO MÁS GRANDE */
+  font-weight: 800;
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding: 0 4px;
+}
+
+.separator {
+  color: #3b4b66;
+  font-size: 1.6rem; /* 🚀 MÁS GRANDE */
+  font-weight: 300;
+  -webkit-text-fill-color: #3b4b66 !important;
+}
+
+.university {
+  color: #94a3b8;
+  font-size: 1.2rem; /* 🚀 MÁS GRANDE */
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  opacity: 0.95;
+}
+
 .footer-note {
-  font-size: 0.85rem;
-  color: var(--accent-blue); /* Usamos la variable global para coherencia */
-  opacity: 0.6;
+  font-size: 1rem; /* Un poco más grande */
+  color: #38bdf8;
+  opacity: 0.8;
+  margin-top: 2rem;
+  font-style: italic;
+  border-top: 1px solid rgba(56, 189, 248, 0.1);
+  padding-top: 1.8rem;
+  display: inline-block;
+}
+
+/* ✅ Responsive para móviles */
+@media (max-width: 640px) {
+  .landing-footer {
+    padding: 2rem 1rem;
+  }
+  
+  .name {
+    font-size: 1.4rem; /* Más grande también en móvil */
+  }
+  
+  .developer-names {
+    gap: 0.8rem;
+  }
+  
+  .separator {
+    font-size: 1.3rem;
+  }
+  
+  .university {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
 }
